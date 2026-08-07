@@ -2,6 +2,26 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.33.
 
+## Fase 3 — autenticación y rutas
+
+El frontend se conecta al backend local en `http://localhost:8000` mediante
+cookies `HttpOnly`. La URL se define en `src/app/core/api/api.config.ts`.
+
+Incluye:
+
+- Login, recuperación, creación y cambio obligatorio de contraseña.
+- Interceptor que envía cookies con cada solicitud (`withCredentials`).
+- Guards que separan Super Admin (`/admin/*`) y Business Owner (`/portal/*`).
+- Layouts y rutas protegidas; las vistas de datos detalladas se construirán en
+  las Fases 4 y 5.
+
+Para probarlo localmente:
+
+1. Inicia el backend FastAPI en el puerto `8000`.
+2. Ejecuta `npm start` en esta carpeta.
+3. Abre `http://localhost:4200/login`.
+4. Inicia sesión con un Super Admin o Business Owner.
+
 ## Development server
 
 To start a local development server, run:
