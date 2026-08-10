@@ -15,6 +15,7 @@ import { AdminDashboardComponent } from './features/admin/dashboard/admin-dashbo
 import { BusinessCreateComponent } from './features/admin/businesses/business-create.component';
 import { BusinessDetailComponent } from './features/admin/businesses/business-detail.component';
 import { BusinessListComponent } from './features/admin/businesses/business-list.component';
+import { ContactRequestListComponent } from './features/admin/contact-requests/contact-request-list.component';
 import { PortalDashboardComponent } from './features/portal/dashboard/portal-dashboard.component';
 import { ConversationDetailComponent } from './features/portal/conversations/conversation-detail.component';
 import { ConversationListComponent } from './features/portal/conversations/conversation-list.component';
@@ -61,6 +62,10 @@ export const routes: Routes = [
       {
         path: 'businesses/:businessId',
         component: BusinessDetailComponent,
+      },
+      {
+        path: 'contact-requests',
+        component: ContactRequestListComponent,
       },
     ],
   },

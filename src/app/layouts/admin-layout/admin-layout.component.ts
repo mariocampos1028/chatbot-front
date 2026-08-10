@@ -13,6 +13,7 @@ import { AuthService } from '../../core/auth/auth.service';
         <nav>
           <a routerLink="/admin/dashboard" routerLinkActive="active">Resumen</a>
           <a routerLink="/admin/businesses" routerLinkActive="active">Negocios</a>
+          <a routerLink="/admin/contact-requests" routerLinkActive="active">Leads web</a>
         </nav>
         <button class="logout" type="button" (click)="logout()">Cerrar sesión</button>
       </aside>

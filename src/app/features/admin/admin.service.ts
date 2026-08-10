@@ -9,6 +9,9 @@ import {
   BusinessListResponse,
   BusinessUser,
   BusinessUsersResponse,
+  ContactRequest,
+  ContactRequestListResponse,
+  ContactRequestStatus,
   CreateBusinessPayload,
   CreateBusinessResponse,
 } from './admin.models';
@@ -79,6 +82,30 @@ export class AdminService {
     return this.http.post<{ user: BusinessUser; invitation_sent: boolean }>(
       `${this.baseUrl}/business-users/${userId}/reset-password`,
       {},
+    );
+  }
+
+  getContactRequests(
+    search = '',
+    status?: ContactRequestStatus,
+  ): Observable<ContactRequestListResponse> {
+    let params = new HttpParams().set('limit', 100);
+    if (search.trim()) {
+      params = params.set('search', search.trim());
+    }
+    if (status) {
+      params = params.set('status', status);
+    }
+    return this.http.get<ContactRequestListResponse>(`${this.baseUrl}/contact-requests`, { params });
+  }
+
+  updateContactRequest(
+    requestId: number,
+    payload: Partial<Pick<ContactRequest, 'status' | 'internal_notes'>>,
+  ): Observable<{ contact_request: ContactRequest }> {
+    return this.http.patch<{ contact_request: ContactRequest }>(
+      `${this.baseUrl}/contact-requests/${requestId}`,
+      payload,
     );
   }
 }

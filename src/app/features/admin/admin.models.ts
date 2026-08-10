@@ -84,3 +84,25 @@ export interface CreateBusinessResponse {
   channel: BusinessChannel | null;
   invitation_sent: boolean;
 }
+
+export type ContactRequestStatus = 'new' | 'contacted' | 'qualified' | 'closed' | 'spam';
+
+export interface ContactRequest {
+  id: number;
+  full_name: string;
+  business_name: string | null;
+  email: string;
+  phone: string | null;
+  service_interest: string;
+  message: string | null;
+  status: ContactRequestStatus;
+  internal_notes: string | null;
+  contacted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContactRequestListResponse {
+  total: number;
+  items: ContactRequest[];
+}
