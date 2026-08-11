@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   margin: 0;
   background: #f7f9fc;
+  overflow-x: hidden;
 }
 
 button,
@@ -123,6 +124,7 @@ button {
 .app-shell {
   display: grid;
   min-height: 100vh;
+  max-width: 100%;
   grid-template-columns: 16rem 1fr;
 }
 
@@ -166,6 +168,10 @@ button {
   border-radius: 0.45rem;
   background: transparent;
   color: #fff;
+}
+
+.mobile-nav-toggle {
+  display: none;
 }
 
 .workspace {
@@ -645,22 +651,56 @@ td a,
   color: #667085;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr;
   }
 
   .sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 1rem;
   }
 
   .sidebar nav {
+    display: none;
+    width: 100%;
+  }
+
+  .sidebar nav.mobile-open {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .sidebar nav a {
+    min-height: 2.75rem;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    margin-left: auto;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #475467;
+    border-radius: 0.45rem;
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
   }
 
   .logout {
+    display: none;
+    width: 100%;
     margin-top: 0;
+  }
+
+  .logout.mobile-open {
+    display: block;
   }
 
   .workspace {
@@ -704,23 +744,14 @@ td a,
 }
 
 /* Ajustes adicionales para pantallas táctiles y teléfonos pequeños. */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .sidebar {
     padding: 1rem;
   }
 
   .sidebar nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.25rem;
-    scrollbar-width: thin;
-  }
-
-  .sidebar nav a {
-    flex: 0 0 auto;
-    min-height: 2.75rem;
-    display: inline-flex;
-    align-items: center;
+    overflow: visible;
+    padding-bottom: 0;
   }
 
   .workspace header {

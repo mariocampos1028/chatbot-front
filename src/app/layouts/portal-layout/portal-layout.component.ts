@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { AuthService } from '../../core/auth/auth.service';
@@ -10,16 +10,24 @@ import { AuthService } from '../../core/auth/auth.service';
     <div class="app-shell">
       <aside class="sidebar">
         <a class="brand" routerLink="/portal/dashboard">Mi chatbot</a>
-        <nav>
-          <a routerLink="/portal/dashboard" routerLinkActive="active">Resumen</a>
-          <a routerLink="/portal/conversations" routerLinkActive="active">Conversaciones</a>
-          <a routerLink="/portal/handoffs" routerLinkActive="active">Escalamientos</a>
-          <a routerLink="/portal/bot-settings" routerLinkActive="active">Configurar bot</a>
-          <a routerLink="/portal/settings" routerLinkActive="active">Configuración</a>
-          <a routerLink="/portal/channels" routerLinkActive="active">Canales WhatsApp</a>
-          <a routerLink="/portal/profile" routerLinkActive="active">Mi cuenta</a>
+        <button
+          class="mobile-nav-toggle"
+          type="button"
+          [attr.aria-expanded]="menuOpen()"
+          (click)="menuOpen.set(!menuOpen())"
+        >
+          {{ menuOpen() ? 'Cerrar menú' : 'Menú' }}
+        </button>
+        <nav [class.mobile-open]="menuOpen()">
+          <a routerLink="/portal/dashboard" routerLinkActive="active" (click)="menuOpen.set(false)">Resumen</a>
+          <a routerLink="/portal/conversations" routerLinkActive="active" (click)="menuOpen.set(false)">Conversaciones</a>
+          <a routerLink="/portal/handoffs" routerLinkActive="active" (click)="menuOpen.set(false)">Escalamientos</a>
+          <a routerLink="/portal/bot-settings" routerLinkActive="active" (click)="menuOpen.set(false)">Configurar bot</a>
+          <a routerLink="/portal/settings" routerLinkActive="active" (click)="menuOpen.set(false)">Configuración</a>
+          <a routerLink="/portal/channels" routerLinkActive="active" (click)="menuOpen.set(false)">Canales WhatsApp</a>
+          <a routerLink="/portal/profile" routerLinkActive="active" (click)="menuOpen.set(false)">Mi cuenta</a>
         </nav>
-        <button class="logout" type="button" (click)="logout()">Cerrar sesión</button>
+        <button class="logout" [class.mobile-open]="menuOpen()" type="button" (click)="logout()">Cerrar sesión</button>
       </aside>
       <main class="workspace">
         <header>
@@ -35,6 +43,7 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class PortalLayoutComponent {
   readonly auth = inject(AuthService);
+  readonly menuOpen = signal(false);
   private readonly router = inject(Router);
 
   logout(): void {
