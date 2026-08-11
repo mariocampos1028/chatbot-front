@@ -697,3 +697,102 @@ td a,
     grid-template-columns: 1fr;
   }
 }
+
+/* Ajustes adicionales para pantallas táctiles y teléfonos pequeños. */
+@media (max-width: 760px) {
+  .sidebar {
+    padding: 1rem;
+  }
+
+  .sidebar nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: thin;
+  }
+
+  .sidebar nav a {
+    flex: 0 0 auto;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .workspace header {
+    margin-bottom: 1.25rem;
+  }
+
+  .workspace h1 {
+    font-size: clamp(1.35rem, 7vw, 1.85rem);
+    overflow-wrap: anywhere;
+  }
+
+  .table-wrap {
+    margin-inline: -0.25rem;
+  }
+
+  table {
+    min-width: 42rem;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+    overflow-wrap: anywhere;
+  }
+
+  .action-cell {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    width: calc(100% - 1.25rem);
+    margin: 1.25rem auto;
+    padding: 1.25rem;
+  }
+
+  .workspace {
+    padding: 0.85rem;
+  }
+
+  .sidebar {
+    padding: 0.85rem;
+  }
+
+  .panel,
+  .page-card {
+    padding: 1rem;
+    border-radius: 0.65rem;
+  }
+
+  .page-heading {
+    margin-bottom: 1rem;
+  }
+
+  .metric-grid {
+    gap: 0.75rem;
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .primary-link,
+  .secondary-link,
+  .primary-button,
+  .secondary-button,
+  .danger-button {
+    width: 100%;
+  }
+
+  .button-row,
+  .action-cell {
+    width: 100%;
+  }
+
+  .inline-form button,
+  .faq-form button {
+    width: 100%;
+  }
+}
