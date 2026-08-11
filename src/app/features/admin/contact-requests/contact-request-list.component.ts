@@ -54,16 +54,16 @@ import { ContactRequest, ContactRequestStatus } from '../admin.models';
             <tbody>
               @for (contact of requests(); track contact.id) {
                 <tr>
-                  <td>
+                  <td data-label="Contacto">
                     <strong>{{ contact.full_name }}</strong>
                     <small>{{ contact.business_name || 'Sin negocio indicado' }}</small>
                     <small>{{ contact.email }}{{ contact.phone ? ' · ' + contact.phone : '' }}</small>
                   </td>
-                  <td>{{ contact.service_interest }}</td>
-                  <td class="message-preview" [title]="contact.message || ''">
+                  <td data-label="Interés">{{ contact.service_interest }}</td>
+                  <td class="message-preview" data-label="Mensaje" [title]="contact.message || ''">
                     {{ contact.message || 'Sin mensaje' }}
                   </td>
-                  <td>
+                  <td data-label="Estado">
                     <select
                       [ngModel]="contact.status"
                       (ngModelChange)="changeStatus(contact, $event)"
@@ -76,7 +76,7 @@ import { ContactRequest, ContactRequestStatus } from '../admin.models';
                       <option value="spam">Spam</option>
                     </select>
                   </td>
-                  <td>{{ contact.created_at | date: 'medium' }}</td>
+                  <td data-label="Recibido">{{ contact.created_at | date: 'medium' }}</td>
                 </tr>
               }
             </tbody>

@@ -56,18 +56,18 @@ import { AdminService } from '../admin.service';
             <tbody>
               @for (business of businesses(); track business.id) {
                 <tr>
-                  <td>
+                  <td data-label="Negocio">
                     <strong>{{ business.name }}</strong>
                     <small>{{ business.owner_phone ?? 'Sin teléfono de alertas' }}</small>
                   </td>
-                  <td>
+                  <td data-label="Estado">
                     <span class="badge" [class.badge-inactive]="!business.is_active">
                       {{ business.is_active ? 'Activo' : 'Inactivo' }}
                     </span>
                   </td>
-                  <td>{{ business.last_message_at ? (business.last_message_at | date: 'medium') : '—' }}</td>
-                  <td>{{ business.created_at | date: 'mediumDate' }}</td>
-                  <td><a [routerLink]="['/admin/businesses', business.id]">Gestionar</a></td>
+                  <td data-label="Último mensaje">{{ business.last_message_at ? (business.last_message_at | date: 'medium') : '—' }}</td>
+                  <td data-label="Fecha de alta">{{ business.created_at | date: 'mediumDate' }}</td>
+                  <td data-label="Acciones"><a [routerLink]="['/admin/businesses', business.id]">Gestionar</a></td>
                 </tr>
               }
             </tbody>

@@ -28,9 +28,9 @@ import { PortalService } from '../portal.service';
             <tbody>
               @for (channel of channels()!; track channel.id) {
                 <tr>
-                  <td>{{ channel.phone_number_id }}</td>
-                  <td>{{ channel.waba_id || '—' }}</td>
-                  <td>
+                  <td data-label="Phone Number ID">{{ channel.phone_number_id }}</td>
+                  <td data-label="WABA ID">{{ channel.waba_id || '—' }}</td>
+                  <td data-label="Estado">
                     <span class="badge" [class.badge-inactive]="!channel.is_active">
                       {{ channel.is_active ? 'Activo' : 'Inactivo' }}
                     </span>

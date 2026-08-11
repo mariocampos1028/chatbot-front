@@ -86,9 +86,9 @@ import { AdminService } from '../admin.service';
               <tbody>
                 @for (channel of business()!.channels; track channel.id) {
                   <tr>
-                    <td>{{ channel.phone_number_id }}</td>
-                    <td>{{ channel.waba_id ?? '—' }}</td>
-                    <td><span class="badge" [class.badge-inactive]="!channel.is_active">{{ channel.is_active ? 'Activo' : 'Inactivo' }}</span></td>
+                    <td data-label="Phone Number ID">{{ channel.phone_number_id }}</td>
+                    <td data-label="WABA ID">{{ channel.waba_id ?? '—' }}</td>
+                    <td data-label="Estado"><span class="badge" [class.badge-inactive]="!channel.is_active">{{ channel.is_active ? 'Activo' : 'Inactivo' }}</span></td>
                   </tr>
                 }
               </tbody>
@@ -113,15 +113,15 @@ import { AdminService } from '../admin.service';
               <tbody>
                 @for (user of users(); track user.id) {
                   <tr>
-                    <td><strong>{{ user.full_name }}</strong><small>{{ user.email }}</small></td>
-                    <td>
+                    <td data-label="Usuario"><strong>{{ user.full_name }}</strong><small>{{ user.email }}</small></td>
+                    <td data-label="Estado">
                       <span class="badge" [class.badge-inactive]="!user.is_active">
                         {{ user.is_active ? 'Activo' : 'Inactivo' }}
                       </span>
                       @if (user.must_change_password) { <small>Debe configurar contraseña</small> }
                     </td>
-                    <td>{{ user.last_login_at ? (user.last_login_at | date: 'medium') : 'Sin acceso' }}</td>
-                    <td class="action-cell">
+                    <td data-label="Último acceso">{{ user.last_login_at ? (user.last_login_at | date: 'medium') : 'Sin acceso' }}</td>
+                    <td class="action-cell" data-label="Acciones">
                       <button class="text-button" type="button" (click)="resetAccess(user)">
                         Reenviar acceso
                       </button>

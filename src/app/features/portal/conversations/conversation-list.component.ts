@@ -49,18 +49,18 @@ import { PortalService } from '../portal.service';
             <tbody>
               @for (conversation of conversations(); track conversation.id) {
                 <tr>
-                  <td>
+                  <td data-label="Cliente">
                     <strong>{{ conversation.display_name || conversation.customer_phone }}</strong>
                     <small>{{ conversation.customer_phone }}</small>
                   </td>
-                  <td class="message-preview">{{ conversation.last_message || '—' }}</td>
-                  <td>
+                  <td class="message-preview" data-label="Último mensaje">{{ conversation.last_message || '—' }}</td>
+                  <td data-label="Estado">
                     <span class="badge" [class.badge-inactive]="conversation.status === 'needs_human'">
                       {{ conversation.status === 'bot_active' ? 'Bot activo' : 'Requiere humano' }}
                     </span>
                   </td>
-                  <td>{{ conversation.last_message_at | date: 'medium' }}</td>
-                  <td><a [routerLink]="['/portal/conversations', conversation.id]">Ver detalle</a></td>
+                  <td data-label="Fecha">{{ conversation.last_message_at | date: 'medium' }}</td>
+                  <td data-label="Acciones"><a [routerLink]="['/portal/conversations', conversation.id]">Ver detalle</a></td>
                 </tr>
               }
             </tbody>
